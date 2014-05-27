@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="msapplication-tap-highlight" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="format-detection" content="telephone=yes">
+  <title>ChocolateChip-UI iOS</title>
+  <link rel="stylesheet" href="../chuiproject/chui/chui-buckram.css">
+  <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script src="../chuiproject/chui/chui-3.5.2.js"></script>
+  <script>
+	$(function() {
+	   
+	});
+  </script>
+</head>
+<body>
+  <nav class="current">
+	<h1>Buckram</h1>
+  </nav>
+  <article id="main" class="current">
+	<section>
+	  <ul class='list' role='list'>
+		<li class='comp' data-goto="newEnquiry">
+		  <div>
+			<h3>New Enquiry</h3>
+		  </div>
+		  <aside>
+			<span class='nav'></span>
+		  </aside>
+		</li>
+		<li class='comp' data-goto="bookings">
+		  <div>
+			<h3>Bookings</h3>
+		  </div>
+		  <aside>
+			<span class='nav'></span>
+		  </aside>
+		</li>
+		<li class='comp' data-goto="openEnquiries">
+		  <div>
+			<h3>Open Enquiries</h3>
+		  </div>
+		  <aside>
+			<span class='nav'></span>
+		  </aside>
+		</li>
+		<li class='comp' data-goto="jobsSummary">
+		  <div>
+			<h3>Jobs Summary</h3>
+		  </div>
+		  <aside>
+			<span class='nav'></span>
+		  </aside>
+		</li>
+		<li class='comp' data-goto="calendar">
+		  <div>
+			<h3>Calendar</h3>
+		  </div>
+		  <aside>
+			<span class='nav'></span>
+		  </aside>
+		</li>
+	  </ul>
+	</section>
+  </article>
+  
+  <nav class='next'>
+	<a href='#' class='button back'>Home</a>
+	<h1>Bookings</h1>
+  </nav>
+  <article id="bookings" class='next'>
+	<section>
+	  <h2>Current Bookings</h2>
+ 
+ 	<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>
+	<script type='text/javascript' src='http://datejs.googlecode.com/files/date.js'></script> 
+	<script type='text/javascript' src='./scripts/GCalEvents.js'></script> 
+    <script type="text/javascript" src="//www.google.com/jsapi"></script>
+    
+    <script type="text/javascript">
+      google.load('visualization', '1', {packages: ['table']});
+    </script>
+    <script type="text/javascript">
+    
+    var visualization;
+
+function drawVisualization() {
+      // Get everything from the spreadsheet
+      var query = new google.visualization.Query(
+          'https://docs.google.com/spreadsheet/pub?key=0AmmkdREGXew2dGtZS3BaTG53ZEw0RG96NExsdkFMcnc&single=true&gid=1&output=html');
+    
+      // Send the query with a callback function.
+      query.send(handleQueryResponse);
+    }
+    
+    function handleQueryResponse(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+		}
+    
+      var data = response.getDataTable();
+      
+
+	   	visualization = new google.visualization.Table(document.getElementById('table'));
+      	// Now draw it or hide it with comments
+<!--     visualization.draw(data, {legend: 'bottom', page: 'enable', pageSize: 10,}); -->
+        
+      
+        // Set columns in a data view. (Event Date, Job & Type View)
+        var dataView1 = new google.visualization.DataView(data);
+        var StatusFilter1 = dataView1.getFilteredRows([{
+        column: 2, value: 'Patootie Shoot'
+        }]);
+        dataView1.setColumns([1, 2, 3]);
+        dataView1.setRows(StatusFilter1);
+        
+        
+      	// Now draw it
+        var table1 = new google.visualization.Table(document.getElementById('table1'));
+        table1.draw(dataView1, {legend: 'bottom', page: 'enable', pageSize: 10,});
+        
+        
+
+        // Set columns in a data view. (Event Date, Job & Status)
+        
+
+
+        var dataView2 = new google.visualization.DataView(data);        
+        var StatusFilter2 = dataView2.getFilteredRows([{
+        column: 14, value: 'Dead'
+        }]);
+        dataView2.setColumns([1, 2, 14]);
+        dataView2.setRows(StatusFilter2);
+        
+        
+        
+      	// Now draw it
+        var table2 = new google.visualization.Table(document.getElementById('table2'));
+        table2.draw(dataView2, {legend: 'bottom', page: 'enable', pageSize: 10,});
+      
+    }
+
+        
+		google.setOnLoadCallback(drawVisualization);
+
+		</script>
+
+		<!-- Here is the fetched google table -->	
+		<div id="table">
+		<div id="table1">
+		</div>
+
+	</section>
+  </article>
+
+  <nav class='next'>
+	<a href='#' class='button back'>Home</a>
+	<h1>Enquiry</h1>
+  </nav>
+  <article id="newEnquiry" class='next'>
+	<section>
+	  <h2>
+		New enquiry or job.</h2>
+	<!-- Here starts the google form -->	
+	<div>
+	<ul class='list'>
+		<li>
+		<form>
+			<fieldset>
+				 <legend>Job Basics</legend>
+					Job Name <input type="text" name="Job Name"><br>
+					Job Type:   <select name="Job Type">
+									<option value="Wedding" selected>Wedding</option>
+									<option value="Engagement">Engagement</option>
+									<option value="Portrait">Portrait</option>
+									<option value="Headshots">Headshots</option>
+								</select>
+			 </fieldset>
+			 <fieldset>
+				 <legend>Client Details</legend>
+				 	First Name: <input type="text" name="firstname"><br>
+				 	Last Name: <input type="text" name="lastname"><br>
+				 	email: <input type="email" name="emailAddress"><br>
+				 	Phone: <input type="number" name="phonenumber"><br>
+			 </fieldset>	 
+		</form>
+		</li>
+	</ul>	
+	</div>
+	  <p>Nothing to see here...</p>
+	</section>
+  </article>
+
+  <nav class='next'>
+	<a href='#' class='button back'>Home</a>
+	<h1>Open Enquiries</h1>
+  </nav>
+  <article id="openEnquiries" class='next'>
+	<section>
+	  <h2>Open enquiries</h2>
+	  
+		<!-- Insert google table -->	
+		<div id="table2">
+		</div>
+
+	  <p>Follow up on these muthafucka!</p>
+	</section>
+  </article>
+  
+  
+  <nav class='next'>
+	<a href='#' class='button back'>Home</a>
+	<h1>Jobs Summary</h1>
+  </nav>
+  <article id="jobsSummary" class='next'>
+	<section>
+	  <h2>Jobs by date</h2>
+	  <ul class='list'>
+		<li>
+		  <h3>Lucy Headshots</h3>
+		  <p>Job Date: 30th Jan 2014</p>
+		  <p>Status: Booked</p>
+		</li>
+		<li>
+		  <h3>Kris + Jason Wedding</h3>
+		  <p>Job Date: 1st Mar 2014</p>
+		  <p>Status: Booked</p>
+		</li>
+		<li>
+		  <h3>Lisa + Andrew Wedding</h3>
+		  <p>Job Date: 4th Oct 2014</p>
+		  <p>Status: Awaiting Forms</p>
+		</li>
+		<li>
+		  <h3>Jacinta + Canice Wedding</h3>
+		  <p>Job Date: 4th Oct 2014</p>
+		  <p>Status: Booked</p>
+		</li>
+	  </ul>
+
+	  <ul class='list'>
+	  <li>
+		  <h3>More animals</h3>
+		  <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+		</li>
+		</ul>
+	</section>
+  </article>
+  <nav class='next'>
+	<a href='#' class='button back'>Home</a>
+	<h1>Calendar</h1>
+  </nav>
+  <article id="calendar" class='next'>
+	<section>
+	  <h2>Calendar Events</h2>
+	  <ul class='list'>
+		<li>
+		  <h3></h3>
+		  <div>
+		  	<script type="text/javascript" charset="utf-8">
+				// url of json data 
+				// here, instead of pointing to the google calendar link that you'll want to use,
+				// I'm pointing to a static file so that this example doesn't break in the future even
+				// if the calendar it was based upon changes.
+				// you'll want to use a link in the form of: 
+				// http://www.google.com/calendar/feeds/your-calendar@gmail.com/public/full?orderby=starttime&sortorder=ascending&max-results=3&futureevents=true&alt=json
+				var calendar_json_url = "https://www.google.com/calendar/feeds/ctjib8fbmv42anlbb4feh8bi4c%40group.calendar.google.com/public/full?orderby=starttime&sortorder=ascending&max-results=3&futureevents=true&alt=json";
+         
+				$(document).ready(GCalEvents(calendar_json_url));
+			</script>
+		  
+		  	<p>The next 3 events with full details:</p>
+			<ul id="gcal-events">
+	  		<li>No events listed</li>
+			</ul>
+		  </div>
+<!--		  <p>That's all folks</p> -->
+		
+		
+		</li>
+	  </ul>
+<!--	  	<p>All <a href="https://www.google.com/calendar/embed?src=ctjib8fbmv42anlbb4feh8bi4c%40group.calendar.google.com&ctz=Australia/Brisbane">calendar data</a>.</p>  -->
+			<p>Click <a href="calframe.html">here</a> for full calendar</p?	
+	</section>
+  </article>
+</body>
+</html>

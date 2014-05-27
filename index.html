@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-tap-highlight" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=yes">
+    <title>ChocolateChip-UI iOS</title>
+    <link rel="stylesheet" href="./chuiproject/chui/chui-ios-3.5.2.css">
+    <!--  <script src="../chuiproject/chui/bookings.js"></script>  -->
+    <!-- Load jQuery from CloudFlare’s CDN. -->
+    <script src="./chuiproject/chui/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="./chuiproject/chui/js4.js" type="text/javascript"></script>
+    <script src="./chuiproject/chui/chui-3.5.2.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="./chuiproject/chui/fontello.css">
+
+
+    <script>
+        $(function() {});
+    </script>
+
+
+</head>
+
+<body>
+
+    <!-- ------------ -->
+    <!--   MAIN PAGE  -->
+    <!-- ------------ -->
+    <nav class="current">
+        <h1>Buckram</h1>
+    </nav>
+
+    <article id="main" class="current">
+        <section>
+
+            <div>
+                <a class='button' id='goToEnquiryButton'>New Enquiry</a>
+            </div>
+
+            <!-- Main page NAV list -->
+            <ul class='list' role='list'>
+                <li class='comp' data-goto="newEnquiry">
+                    <div>
+                        <h3>New Enquiry</h3>
+                    </div>
+                    <aside>
+                        <span class='nav'></span>
+                    </aside>
+                </li>
+                <li class='comp' data-goto="bookings">
+                    <div>
+                        <h3>Bookings</h3>
+                    </div>
+                    <aside>
+                        <span class='nav'></span>
+                    </aside>
+                </li>
+                <li class='comp' data-goto="openEnquiries">
+                    <div>
+                        <h3>Open Enquiries</h3>
+                    </div>
+                    <aside>
+                        <span class='nav'></span>
+                    </aside>
+                </li>
+                <li class='comp' data-goto="jobsSummary">
+
+                    <div>
+                        <h3>Jobs Summary</h3>
+                    </div>
+                    <aside>
+                        <span class='nav'></span>
+                    </aside>
+                </li>
+                <li class='comp' data-goto="setup">
+                    <div>
+                        <h3>Setup</h3>
+                    </div>
+                    <aside>
+                        <span class='nav'></span>
+                    </aside>
+                </li>
+
+                <li class='comp' data-goto="settings">
+                    <div>
+                        <h3>Settings</h3>
+                    </div>
+                    <aside>
+                        <span class='nav'></span>
+                    </aside>
+                </li>
+
+            </ul>
+        </section>
+    </article>
+
+    <!-- ---------------- -->
+    <!--   END MAIN PAGE  -->
+    <!-- ---------------- -->
+
+
+
+    <!-- ------------- -->
+    <!-- BOOKINGS PAGE -->
+    <!-- ------------- -->
+    <nav class='next'>
+        <a href='#' class='button back'>Home</a>
+        <h1>Bookings</h1>
+    </nav>
+
+
+    <article id="bookings" class='next'>
+        <section>
+            <h2>Current Bookings</h2>
+            <div>
+                <p>Placeholder</p>
+            </div>
+        </section>
+    </article>
+
+
+
+
+    <!-- ------------- -->
+    <!--  ENQUIRY PAGE -->
+    <!-- ------------- -->
+    <nav class='next'>
+        <a href='#' class='button back'>Home</a>
+        <h1>Enquiry</h1>
+    </nav>
+
+    <article id='newEnquiry' class='next'>
+        <section>
+            <form>
+                <ul class='list' id='newEnquiryForm'>
+                    <li>
+                        <div>Job Name
+                            <input type="text" size="30" placeholder="Name" name="jobName" id="job_name_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            Job Type
+                            <select name="jobType" id="job_type_field">
+                                <option value="Wedding">Wedding</option>
+                                <option value="Portrait">Portrait</option>
+                                <option value="Engagement">Engagement</option>
+                                <option value="Commercial">Commercial</option>
+                                <option value="Head-Shots">Head-Shots</option>
+                                <option value="Creative">Creative</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div>First Name
+                            <input type="text" size="30" placeholder="First Name" name="client_first_name" id="client_first_name_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>Last Name
+                            <input type="text" size="30" placeholder="Last Name" name="client_last_name" id="client_last_name_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>Email
+                            <input type="text" size="30" placeholder="Email" name="client_email" id="client_email_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>Phone
+                            <input type="text" size="30" placeholder="Tel" name="client_phone" id="client_phone_field">
+                        </div>
+                    </li>
+                </ul>
+                <!-- Save Enquiry Button -->
+                <a class='button' id='saveNewBusinessButton' onclick="">Save</a>
+            </form>
+        </section>
+    </article>
+
+
+
+    <!-- --------------------- -->
+    <!--    OPEN ENQUIRIES     -->
+    <!-- --------------------- -->
+    <nav class='next'>
+        <a href='#' class='button back'>Home</a>
+        <h1>Open Enquiries</h1>
+    </nav>
+    <article id="openEnquiries" class='next'>
+        <section>
+            <h2>Open enquiries</h2>
+
+            <div>Open enquiries placeholder</div>
+
+
+            <p>Follow up on these muthafucka!</p>
+        </section>
+    </article>
+
+
+
+
+    <!-- --------------------- -->
+    <!--     JOBS SUMMARY      -->
+    <!-- --------------------- -->
+    <nav class='next'>
+        <a href='#' class='button back'>Home</a>
+        <h1>Jobs Summary</h1>
+    </nav>
+    <article id="jobsSummary" class='next'>
+        <section>
+
+            <ul class='list'>
+                <li class='comp'>
+                    <aside>
+                        <div title="Code: 0xe811" class="the-icons span3">
+                            <i class="icon-bookmark"></i>
+                            <span class="i-name"></span>
+                            <span class="i-code"></span>
+                        </div>
+                    </aside>
+                    <div>
+                        <h3>Lucy Headshots</h3>
+                        <p>Job Date: 30th Jan 2014</p>
+                        <p>Status: Booked</p>
+                    </div>
+                    <aside>
+                        <span class='show-detail'></span>
+                    </aside>
+                </li>
+                <li class='comp'>
+                    <aside>
+                        <div title="Code: 0xe811" class="the-icons span3">
+                            <i class="icon-bookmark"></i>
+                            <span class="i-name"></span>
+                            <span class="i-code"></span>
+                        </div>
+                    </aside>
+                    <div>
+                        <h3>Kris + Jason Wedding</h3>
+                        <p>Job Date: 1st Mar 2014</p>
+                        <p>Status: Booked</p>
+                    </div>
+                    <aside>
+                        <span class='show-detail'></span>
+                    </aside>
+                </li>
+                <li class='comp'>
+                    <aside>
+                        <div title="Code: 0xe812" class="the-icons span3">
+                            <i class="icon-bookmark-empty"></i>
+                            <span class="i-name"></span>
+                            <span class="i-code"></span>
+                        </div>
+                    </aside>
+                    <div>
+                        <h3>Lisa + Andrew Wedding</h3>
+                        <p>Job Date: 4th Oct 2014</p>
+                        <p>Status: Awaiting Forms</p>
+                    </div>
+                    <aside>
+                        <span class='show-detail'></span>
+                    </aside>
+                </li>
+                <li class='comp'>
+                    <aside>
+                        <div title="Code: 0xe812" class="the-icons span3">
+                            <i class="icon-bookmark-empty"></i>
+                            <span class="i-name"></span>
+                            <span class="i-code"></span>
+                        </div>
+                    </aside>
+                    <div>
+                        <h3>Jacinta + Canice Wedding</h3>
+                        <p>Job Date: 4th Oct 2014</p>
+                        <p>Status: Booked</p>
+                    </div>
+                    <aside>
+                        <span class='show-detail'></span>
+                    </aside>
+                </li>
+            </ul>
+        </section>
+    </article>
+
+
+
+
+    <!-- --------------------- -->
+    <!--    SETTINGS PAGE      -->
+    <!-- --------------------- -->
+    <nav class='next'>
+        <a href='#' class='button back'>Home</a>
+        <h1>Settings</h1>
+    </nav>
+
+
+    <!-- --------------------- -->
+    <!--  SETTINGS PAGE BODY   -->
+    <!-- --------------------- -->
+
+    <article id="settings" class='next'>
+        <section>
+            <!-- Creates a new menu -->
+            <ul class='list' role='list'>
+                <li class='comp' data-goto="busSetup">
+                    <aside>
+                        <div title="Code: 0xe80d" class="the-icons span3">
+                            <i class="icon-cog-alt"></i>
+                            <span class="i-name"></span>
+                        </div>
+                    </aside>
+                    <div>
+                        <h3>Business Settings</h3>
+                    </div>
+                    <aside>
+                        <span class='nav'></span>
+                    </aside>
+                </li>
+                <li class='comp' data-goto="busMembersSetup">
+                    <aside>
+                        <div title="Code: 0xe823" class="the-icons span3">
+                            <i class="icon-user"></i>
+                            <span class="i-name"></span>
+                        </div>
+                    </aside>
+                    <div>
+                        <h3>Business Members</h3>
+                    </div>
+                    <aside>
+                        <span class='nav'></span>
+                    </aside>
+                </li>
+            </ul>
+
+        </section>
+    </article>
+
+
+    <!-- Nav for Settings/Business name setup page -->
+    <nav class='next'>
+        <a href='#' class='button back'>Settings</a>
+        <h1>Business Settings</h1>
+    </nav>
+
+    <!-- Body for Settings/Business setup page -->
+    <article id="busSetup" class='next'>
+        <section>
+            <div>
+                <!-- New Business Button -->
+                <a class='button' id='goToNewBusinessButton'>New Business</a>
+            </div>
+            <ul class='list' id='busList'>
+                <li id="busListItem" class='comp'>
+                    <div>
+                        <div id="businessOutputDiv"></div>
+                        <div id="businessAddressDiv"></div>
+                    </div>
+                    <aside>
+                        <span class='show-detail'></span>
+                    </aside>
+                </li>
+            </ul>
+
+            <a class='button' id='deleteNewBusinessButton' onclick="window.deleteBusiness();window.location.reload()">Delete</a>
+        </section>
+    </article>
+
+
+
+
+    <!-- ------------------------------- -->
+    <!-- Nav for New Business setup page -->
+    <!-- ------------------------------- -->
+    <nav class='next'>
+        <a href='#' class='button back'>Settings</a>
+        <h1>New Business</h1>
+    </nav>
+
+    <!-- --------------------------------------- -->
+    <!-- Body for Settings > Business setup page -->
+    <!-- --------------------------------------- -->
+    <article id='newBusiness' class='next'>
+        <section>
+
+            <form>
+
+                <div>
+                    <h3>Business Name</h3>
+                </div>
+                <ul class='list' id='newBizNameList'>
+                    <li>
+                        <div>Name
+                            <input type="text" size="30" name="bizName" id="biz_name_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            Phone
+                            <input type="text" size="30" name="businessPhone" id="biz_phone_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>Email
+                            <input type="text" size="30" name="businessEmail" id="biz_email_field">
+                        </div>
+                    </li>
+                </ul>
+
+                <div>
+                    <h3>Business Address</h3>
+                </div>
+                <ul class='list' id='newBizAddressList'>
+                    <li>
+                        <div>Street
+                            <input type="text" size="30" name="streetAddress" id="street_address_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>Suburb
+                            <input type="text" size="30" name="suburbAddress" id="suburb_address_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>City/Town
+                            <input type="text" size="30" name="cityAddress" id="city_address_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>State
+                            <input type="text" size="30" name="stateAddress" id="state_address_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>Country
+                            <input type="text" size="30" name="countryAddress" id="country_address_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>Postcode
+                            <input type="text" size="30" name="postAddress" id="postcode_address_field">
+                        </div>
+                    </li>
+                </ul>
+                <!--     <input type="button" size="30" name="saveBusinessAddress" value="Save" onclick="window.NewBusiness()"> -->
+                <!--  <input type="button" name="saveBusinessAddress" value="Save" onclick="window.NewBusiness(); hide('wiz_stage2')"> -->
+                <!-- Save Business Button -->
+                <a class='button' id='saveNewBusinessButton' onclick="window.NewBusiness()">Save</a>
+
+            </form>
+            <div id="businessOutputDiv"></div>
+            <div id="businessAddressDiv"></div>
+
+        </section>
+    </article>
+
+    <!-- --------------------------------------- -->
+    <!--       END SETTINGS > BUSINESS SETUP     -->
+    <!-- --------------------------------------- -->
+
+
+
+    <!-- -------------------------------------------- -->
+    <!-- Nav for Settings > Business Phone setup page -->
+    <!-- -------------------------------------------- -->
+    <nav class='next'>
+        <a href='#' class='button back'>Settings</a>
+        <h1>Business Members</h1>
+    </nav>
+
+    <!-- Body for Settings/Unused setup page -->
+    <article id="busMembersSetup" class='next'>
+        <section>
+            <div>
+                <a href='#' class='button'>New Business Member</a>
+            </div>
+            <ul class='list' id='busMembersList'>
+                <li id="memberListItem" class='comp'>
+                    <div>
+                        <h3>David Smith</h3>
+                        <p>Tel: 0456 586 337</p>
+                        <p>Email: dawg@me.com</p>
+                    </div>
+                    <aside>
+                        <span class='show-detail'></span>
+                    </aside>
+                </li>
+                <li id="memberListItem2" class='comp'>
+                    <div>
+                        <h3>Johnathan Mann</h3>
+                        <p>Tel: 0458778956</p>
+                        <p>Email: jdog@you.com</p>
+                    </div>
+                    <aside>
+                        <span class='show-detail'></span>
+                    </aside>
+                </li>
+            </ul>
+
+        </section>
+
+
+        <!-- --------------------- -->
+        <!--   End Settings page   -->
+        <!-- --------------------- -->
+
+
+
+
+        <!-- -------------------- -->
+        <!-- Setup page NAV setup -->
+        <!-- -------------------- -->
+        <nav class='next'>
+            <a href='#' class='button back'>Home</a>
+            <h1>Setup</h1>
+        </nav>
+
+        <article id="setup" class='next'>
+            <section>
+                <div id="wiz_welcome">
+                </div>
+                <div id="wiz_stage1">
+                    <!-- Detect whether a biz exists. If not go to biz setup logic -->
+                    <p>Lets start by entering information about your business.</p>
+                    <br>
+                    <input type="button" name="newBizButton" value="New Business" onclick="show('wiz_stage2'); hide('wiz_stage4'); hide('wiz_stage5'); hide('wiz_stage6')">
+                    <input type="button" name="newBizMemberButton" value="New Business Member" onclick="show('wiz_stage4'); hide('wiz_stage2'); hide('wiz_stage5'); hide('wiz_stage6')">
+                    <input type="button" name="newProjectButton" value="New Project" onclick="show('wiz_stage5'); hide('wiz_stage2'); hide('wiz_stage4'); hide('wiz_stage6')">
+                    <input type="button" name="newEventButton" value="New Event" onclick="show('wiz_stage6'); hide('wiz_stage2'); hide('wiz_stage4'); hide('wiz_stage5')">
+                    <input type="button" name="newContactButton" value="New Contact" onclick="">
+                </div>
+                <br>
+                <div id="wiz_stage2" style="display: none">
+                    <form>
+                        <h3>Business Name</h3>
+                        <br>
+                        <br>
+                        <input type="text" name="bizName" id="biz_name_field">
+                        <p>Now Lets get some address info for this business</p>
+                        <br>Business Phone:
+                        <input type="text" name="businessPhone" id="biz_phone_field">
+                        <br>Business Email:
+                        <input type="text" name="businessEmail" id="biz_email_field">
+                        <br>
+                        <br>
+                        <h3>Business Address</h3>
+                        <br>
+                        <br>Street
+                        <input type="text" name="streetAddress" id="street_address_field">
+                        <br>Suburb/Region
+                        <input type="text" name="suburbAddress" id="suburb_address_field">
+                        <br>City/Town
+                        <input type="text" name="cityAddress" id="city_address_field">
+                        <br>State
+                        <input type="text" name="stateAddress" id="state_address_field">
+                        <br>Country
+                        <input type="text" name="countryAddress" id="country_address_field">
+                        <br>Postcode
+                        <input type="text" name="postAddress" id="postcode_address_field">
+                        <br>
+                        <input type="button" name="saveBusinessAddress" value="Save" onclick="window.NewBusiness()">
+                        <!--  <input type="button" name="saveBusinessAddress" value="Save" onclick="window.NewBusiness(); hide('wiz_stage2')"> -->
+                    </form>
+                </div>
+
+
+
+                <div id="wiz_stage4" style="display: none">
+                    <form>
+                        <p>Lets get some details about the people who work at this business...</p>
+                        <input type="button" name="newMember" value="Add a person" onclick="">
+                        <p>
+                            <b>New Person</b>
+                        </p>
+                        First Name:
+                        <input type="text" name="memberFirstName" id="member_first_name_field">
+                        <br>Last Name:
+                        <input type="text" name="memberLastName" id="member_last_name_field">
+                        <br>Phone Number:
+                        <input type="text" name="memberPhoneNumber" id="member_phone_number_field">
+                        <br>Email:
+                        <input type="text" name="memberEmail" id="member_email_field">
+                        <br>
+                        <input type="button" name="saveMember" value="Save" onclick="window.NewMember()">
+                        <input type="reset" value="Clear" />
+                    </form>
+                </div>
+
+
+
+                <div id="wiz_stage5" style="display: none">
+                    <form>
+                        <p>Lets add a project</p>
+                        <input type="button" name="newProjectForm" value="Add a person" onclick="">
+                        <p>
+                            <b>New Project</b>
+                        </p>
+                        Project Name:
+                        <input type="text" name="projectName" id="project_name_field">
+                        <br>Project Type:
+                        <input type="text" name="projectType" id="project_type_field">
+                        <br>
+                        <input type="button" name="saveMember" value="Save" onclick="window.newProject()">
+                        <input type="reset" value="Clear" />
+                    </form>
+                </div>
+
+                <div id="wiz_stage6" style="display: none">
+                    <form>
+                        <p>Lets add a event</p>
+                        <input type="button" name="newEventForm" value="Add an event" onclick="">
+                        <p>
+                            <b>New Event</b>
+                        </p>
+                        Event Name:
+                        <input type="text" name="eventName" id="event_name_field">
+                        <br>Project Type:
+                        <input type="text" name="eventType" id="event_type_field">
+                        <br>
+                        <br>Event Date:
+                        <input type="text" name="eventDate" id="event_date_field">
+                        <input type="button" name="saveEvent" value="Save" onclick="window.newEvent()">
+                        <input type="reset" value="Clear" />
+                    </form>
+                </div>
+
+                <div id="wiz_result">
+                    <p>Excellento! You just created a business.</p>
+                    <p>Here are the details...</p>
+                </div>
+                <!--              <div id="businessOutputDiv"></div>
+                <div id="businessAddressDiv"></div> -->
+                <div id="membersOutputDiv"></div>
+                <div id="projectOutputDiv"></div>
+                <div id="eventOutputDiv"></div>
+                <br>
+
+            </section>
+
+        </article>
+
+</body>
+
+</html>
