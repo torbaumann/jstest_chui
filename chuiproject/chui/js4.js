@@ -357,3 +357,38 @@ function newContact() {
     updateStorage();
 
 }
+
+
+
+// ///////////////
+// Templating
+// ///////////////
+
+$(document).ready(function() {
+var retrievedBiz1 = JSON.parse(localStorage.getItem('newBiz'));
+
+var template1 = _.template(
+        "<li class = 'comp'>" + 
+            "<div>" +
+                "<h3><%= name %></h3>" +
+                "<p>Tel: <%= tel %></p>" + 
+                "<p> Email: <%= email %></p>" +
+            "</div>" + 
+            "<aside>" + 
+                "<span class = 'show-detail'></span>" +
+            "</aside>" + 
+            "</li>" +
+            "</script>"
+);
+
+var memberItems = "";
+
+for (var i = 0; i < retrievedBiz1.members.length; i++) {
+    memberItems += template1(retrievedBiz1.members[i]);
+}
+
+
+
+$('#busMembersList').html(memberItems);
+
+});
