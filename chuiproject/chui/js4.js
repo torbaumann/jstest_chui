@@ -28,7 +28,6 @@ $(function () {
 })
 
 
-
 // ///////////////////////////////
 // DELETE BUSINESS BUTTON
 // ///////////////////////////////
@@ -43,6 +42,29 @@ function deleteBusiness() {
     }
 
 }
+
+// ///////////////////////////////
+// NEW MEMBER BUTTON
+// ///////////////////////////////
+$(function () {
+    // Attach event to 'goToNewMemberButton' button:
+    $("#goToNewMemberButton").on("singletap", function () {
+        $.UIGoToArticle("#newMemberArticle");
+    });
+})
+
+
+// ///////////////////////////////
+// NEW ENQUIRY BUTTON
+// ///////////////////////////////
+$(function () {
+    // Attach event to 'goToEnquiryButton' button:
+    $("#goToEnquiryButton").on("singletap", function () {
+        $.UIGoToArticle("#newEnquiry");
+    });
+})
+
+
 
 // ///////////////////////////////
 // PAGELOAD CHECK
@@ -79,15 +101,7 @@ window.onload = function () {
 
 
 
-// ///////////////////////////////
-// hook up our NEW ENQUIRY BUTTON
-// ///////////////////////////////
-$(function () {
-    // Attach event to 'goToEnquiryButton' button:
-    $("#goToEnquiryButton").on("singletap", function () {
-        $.UIGoToArticle("#newEnquiry");
-    });
-})
+
 
 // ///////////////////////////////
 // GUID CONSTRUCTOR
@@ -144,9 +158,11 @@ function show(obj) {
 // DEFINE VARS
 // ///////////////////////////////
 var busOutput = "";
+var theBiz = {};
 var retrievedBizOutput = "";
 var busMembersOutput = "";
 var contactOutput = "";
+var memberData = {};
 var pname = "";
 var ptype = "";
 var cfname = "";
@@ -159,6 +175,7 @@ var ccity = "";
 var cstate = "";
 var ccountry = "";
 var cgender = "";
+var memberData = "";
 
 
 // ///////////////////////////////
@@ -217,6 +234,24 @@ function NewMember() {
 }
 
 
+
+// ///////////////////////////////
+// get member data from form
+// ///////////////////////////////
+
+
+function makeNewMember() {
+memberData = $('#newMemberForm').formParams();
+    
+  theBiz.members.push(memberData);
+
+    //call update storage function
+    // updateStorage();
+    
+}
+
+
+
 // ///////////////////////////////
 //PROJECT CONSTRUCTOR
 // ///////////////////////////////
@@ -265,7 +300,6 @@ function Project(projectName, projectType) {
 
 // ///////////////////////////////
 // PROJECT OBJECT FROM FORM
-// build project from form data
 // ///////////////////////////////
 function newProject() {
     pname = document.getElementById("project_name_field").value;
@@ -364,7 +398,7 @@ function newContact() {
 // Templating
 // ///////////////
 
-$(document).ready(function() {
+$(document).ready(function () {
 var retrievedBiz1 = JSON.parse(localStorage.getItem('newBiz'));
 
 var template1 = _.template(
