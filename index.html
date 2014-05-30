@@ -16,7 +16,7 @@
     <script src="./chuiproject/chui/jquery-1.11.1.js" type="text/javascript"></script>
     <script src="./chuiproject/chui/underscore-min.js" type="text/javascript"></script>
     <script src="./chuiproject/chui/jquery.formparams.js" type="text/javascript"></script>
-    <script src="./chuiproject/chui/js4.js" type="text/javascript"></script>
+    <script src="./chuiproject/chui/js5.js" type="text/javascript"></script>
     <script src="./chuiproject/chui/chui-3.5.2.js" type="text/javascript"></script>
 
     <link rel="stylesheet" href="./chuiproject/chui/fontello.css">
@@ -403,25 +403,25 @@
 
     <article id='newBusiness' class='next'>
         <section>
-            <form>
+            <form id='newBusinessForm'>
                 <div>
                     <h3>Business Name</h3>
                 </div>
-                <ul class='list' id='newBizNameList'>
+                <ul class='list'>
                     <li>
                         <div>Name
-                            <input type="text" size="30" name="bizName" id="biz_name_field">
+                            <input type="text" size="30" name="business[name]" id="biz_name_field">
                         </div>
                     </li>
                     <li>
                         <div>
                             Phone
-                            <input type="text" size="30" name="businessPhone" id="biz_phone_field">
+                            <input type="text" size="30" name="business[phone]" id="biz_phone_field">
                         </div>
                     </li>
                     <li>
                         <div>Email
-                            <input type="text" size="30" name="businessEmail" id="biz_email_field">
+                            <input type="text" size="30" name="business[email]" id="biz_email_field">
                         </div>
                     </li>
                 </ul>
@@ -432,39 +432,39 @@
                 <ul class='list' id='newBizAddressList'>
                     <li>
                         <div>Street
-                            <input type="text" size="30" name="streetAddress" id="street_address_field">
+                            <input type="text" size="30" name="business[address][street]" id="street_address_field">
                         </div>
                     </li>
                     <li>
                         <div>Suburb
-                            <input type="text" size="30" name="suburbAddress" id="suburb_address_field">
+                            <input type="text" size="30" name="business[address][suburb]" id="suburb_address_field">
                         </div>
                     </li>
                     <li>
                         <div>City/Town
-                            <input type="text" size="30" name="cityAddress" id="city_address_field">
+                            <input type="text" size="30" name="business[address][city]" id="city_address_field">
                         </div>
                     </li>
                     <li>
                         <div>State
-                            <input type="text" size="30" name="stateAddress" id="state_address_field">
+                            <input type="text" size="30" name="business[address][state]" id="state_address_field">
                         </div>
                     </li>
                     <li>
                         <div>Country
-                            <input type="text" size="30" name="countryAddress" id="country_address_field">
+                            <input type="text" size="30" name="business[address][country]" id="country_address_field">
                         </div>
                     </li>
                     <li>
                         <div>Postcode
-                            <input type="text" size="30" name="postAddress" id="postcode_address_field">
+                            <input type="text" size="30" name="business[address][postcode]" id="postcode_address_field">
                         </div>
                     </li>
                 </ul>
                 <!--     <input type="button" size="30" name="saveBusinessAddress" value="Save" onclick="window.NewBusiness()"> -->
                 <!--  <input type="button" name="saveBusinessAddress" value="Save" onclick="window.NewBusiness(); hide('wiz_stage2')"> -->
                 <!-- Save Business Button -->
-                <a class='button' id='saveNewBusinessButton' onclick="window.NewBusiness()">Save</a>
+                <a class='button' id='saveNewBusinessButton' onclick="window.makeNewBusiness()">Save</a>
 
             </form>
             <div id="businessOutputDiv"></div>
@@ -570,7 +570,7 @@
                 </ul>
 
                 <!-- Save Business Button -->
-                <a class='button' id='saveMemberButton' onclick="window.makeNewMember()">Save</a>
+                <a class='button' id='saveMemberButton' onclick="window.makeNewMember();document.getElementById('newMemberForm').reset()">Save</a>
 
             </form>
         </section>

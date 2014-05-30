@@ -55,6 +55,18 @@ $(function () {
 
 
 // ///////////////////////////////
+// SAVE NEW MEMBER BUTTON
+// ///////////////////////////////
+$(function () {
+    // Attach event to 'goToNewMemberButton' button:
+    $("#saveMemberButton").on("singletap", function () {
+        location.reload();
+        $.UIGoToArticle("#busMembersSetup");
+    });
+})
+
+
+// ///////////////////////////////
 // NEW ENQUIRY BUTTON
 // ///////////////////////////////
 $(function () {
@@ -74,29 +86,31 @@ $(function () {
 window.onload = function () {
 
     //test if the myPerson object exists in local Storage
-    if (localStorage.getItem("newBiz") !== null) {
+    if (localStorage.getItem("theBiz") !== null) {
 
 
         // read myPerson string back into an object
-        var retrievedBiz = JSON.parse(localStorage.getItem('newBiz'));
+        retrievedBiz = JSON.parse(localStorage.getItem('theBiz'));
 
         // build our html output
         busOutput = "<ul class='list' id='busSavedList'><li id='bizListItem' class='comp'><div><h3>" +
-            retrievedBiz.name + "</h3>" + "<p>Tel: " +
-            retrievedBiz.phone + "</p><p>Email: " +
-            retrievedBiz.email + "</p><h3>Address</h3><p>Street: " +
-            retrievedBiz.address.street + "</p><p>Suburb: " +
-            retrievedBiz.address.suburb + "</p><p>City: " +
-            retrievedBiz.address.city + "</p><p>State: " +
-            retrievedBiz.address.state + "</p><p>Country: " +
-            retrievedBiz.address.country + "</p><p>Postcode: " +
-            retrievedBiz.address.postcode + "</p></div></li></ul>";
+            retrievedBiz.business.name + "</h3>" + "<p>Tel: " +
+            retrievedBiz.business.phone + "</p><p>Email: " +
+            retrievedBiz.business.email + "</p><h3>Address</h3><p>Street: " +
+            retrievedBiz.business.address.street + "</p><p>Suburb: " +
+            retrievedBiz.business.address.suburb + "</p><p>City: " +
+            retrievedBiz.business.address.city + "</p><p>State: " +
+            retrievedBiz.business.address.state + "</p><p>Country: " +
+            retrievedBiz.business.address.country + "</p><p>Postcode: " +
+            retrievedBiz.business.address.postcode + "</p></div></li></ul>";
 
         // assign html output to div
         document.getElementById("businessOutputDiv").innerHTML = busOutput;
+        
+        theBiz = retrievedBiz
 
     }
-};
+}
 
 
 
@@ -120,7 +134,7 @@ function createGuid() {
 //SAVE TO LOCALSTORAGE
 // ///////////////////////////////
 function updateStorage() {
-    localStorage.setItem('newBiz', JSON.stringify(newBiz));
+    localStorage.setItem('theBiz', JSON.stringify(theBiz));
 }
 
 
@@ -158,7 +172,9 @@ function show(obj) {
 // DEFINE VARS
 // ///////////////////////////////
 var busOutput = "";
-var theBiz = {};
+
+
+
 var retrievedBizOutput = "";
 var busMembersOutput = "";
 var contactOutput = "";
@@ -176,61 +192,35 @@ var cstate = "";
 var ccountry = "";
 var cgender = "";
 var memberData = "";
+// var retrievedBiz = "";
+// var theBiz = retrievedBiz;
+
+
 
 
 // ///////////////////////////////
-// business constructor
+// jquery
+// make new business from form data
 // ///////////////////////////////
-function NewBusiness() {
-    
-    newBiz.name = document.getElementById("biz_name_field").value;
-    newBiz.phone = document.getElementById("biz_phone_field").value;
-    newBiz.email = document.getElementById("biz_email_field").value;
-    newBiz.address = {
-        street: document.getElementById("street_address_field").value,
-        suburb: document.getElementById("suburb_address_field").value,
-        city: document.getElementById("city_address_field").value,
-        state: document.getElementById("state_address_field").value,
-        country: document.getElementById("country_address_field").value,
-        postcode: document.getElementById("postcode_address_field").value
-    };
-    newBiz.members = [];
-    newBiz.projects = [];
-    newBiz.contacts = [];
+function makeNewBusiness() {
+
+    var businessData = $('#newBusinessForm').formParams();
+
+    theBiz = businessData;
+    theBiz.members = [];
+    theBiz.projects = [];
+    theBiz.contacts = [];
 
     // call update storage function
     updateStorage();
 
+    // This needs to be templatised
     // build our html output
-    busOutput = '<b>Business Name: </b>' + newBiz.name + '<br>' + '<b>Phone Number: </b>' + newBiz.phone + '<br><b>Email: </b>' + newBiz.email + '<br><b>Address</b><br><b>Street:</b> ' + newBiz.address.street + '<br><b>Suburb:</b> ' + newBiz.address.street + '<br><b>City:</b> ' + newBiz.address.city + '<br><b>State:</b> ' + newBiz.address.state + '<br><b>Country:</b> ' + newBiz.address.country + '<br><b>Postcode:</b> ' + newBiz.address.postcode + '<hr>';
+    busOutput = '<b>Business Name: </b>' + theBiz.business.name + '<br>' + '<b>Phone Number: </b>' + theBiz.business.phone + '<br><b>Email: </b>' + theBiz.business.email + '<br><b>Address</b><br><b>Street:</b> ' + theBiz.business.address.street + '<br><b>Suburb:</b> ' + theBiz.business.address.suburb + '<br><b>City:</b> ' + theBiz.business.address.city + '<br><b>State:</b> ' + theBiz.business.address.state + '<br><b>Country:</b> ' + theBiz.business.address.country + '<br><b>Postcode:</b> ' + theBiz.business.address.postcode + '<hr>';
 
     // assign html output to div
     document.getElementById("businessOutputDiv").innerHTML = busOutput;
-}
 
-
-
-// ///////////////////////////////
-// new member constructor
-// ///////////////////////////////
-function NewMember() {
-    bizmember = new Object();
-    bizmember.firstName = document.getElementById("member_first_name_field").value;
-    bizmember.lastName = document.getElementById("member_last_name_field").value;
-    bizmember.fullName = bizmember.firstName + " " + bizmember.lastName;
-    bizmember.phoneNumber = document.getElementById("member_phone_number_field").value;
-    bizmember.email = document.getElementById("member_email_field").value;
-    // add it to the newBiz.members array
-    newBiz.members.push(bizmember);
-
-    //call update storage function
-    updateStorage();
-
-    // build our html output
-    busMembersOutput = '<b>Business Members</b>' + '<br><b>Name: </b>' + newBiz.members[0].fullName + '<br><b>Phone: </b>' + newBiz.members[0].phoneNumber + '<br><b>Email: </b>' + newBiz.members[0].email + '<hr>';
-
-    // assign html output to div
-    document.getElementById("membersOutputDiv").innerHTML = busMembersOutput;
 }
 
 
@@ -241,19 +231,23 @@ function NewMember() {
 
 
 function makeNewMember() {
-memberData = $('#newMemberForm').formParams();
-    
-  theBiz.members.push(memberData);
+    memberData = $('#newMemberForm').formParams();
+
+    // push to our theBiz object members array
+    theBiz.members.push(memberData);
 
     //call update storage function
-    // updateStorage();
-    
+    updateStorage();
+
+    // build our html output
+
+
 }
 
 
 
 // ///////////////////////////////
-//PROJECT CONSTRUCTOR
+//%PROJECT CONSTRUCTOR
 // ///////////////////////////////
 function Project(projectName, projectType) {
     this.projectId = createGuid();
@@ -299,7 +293,7 @@ function Project(projectName, projectType) {
 
 
 // ///////////////////////////////
-// PROJECT OBJECT FROM FORM
+// %PROJECT OBJECT FROM FORM
 // ///////////////////////////////
 function newProject() {
     pname = document.getElementById("project_name_field").value;
@@ -321,7 +315,7 @@ function newProject() {
 
 
 // ///////////////////////////////
-// EVENT CONSTRUCTOR
+// %EVENT CONSTRUCTOR
 // ///////////////////////////////
 function Event(eventName, eventType, eventDate) {
     this.eventName = eventName;
@@ -347,7 +341,7 @@ function newEvent() {
 
 
 // ///////////////////////////////
-//CONTACT CONSTRUCTOR
+//%CONTACT CONSTRUCTOR
 // ///////////////////////////////
 function Contact(firstName, lastName, phoneNumber, email, street, suburb, city, state, country, gender) {
     this.firstName = firstName;
@@ -365,7 +359,7 @@ function Contact(firstName, lastName, phoneNumber, email, street, suburb, city, 
     this.id = createGuid();
 }
 
-// build contact object from form data
+// %build contact object from form data
 function newContact() {
     cfname = document.getElementById("contact_first_name_field").value;
     clname = document.getElementById("contact_last_name_field").value;
@@ -395,34 +389,36 @@ function newContact() {
 
 
 // ///////////////
-// Templating
+// %Templating
 // ///////////////
 
 $(document).ready(function () {
-var retrievedBiz1 = JSON.parse(localStorage.getItem('newBiz'));
+    if (localStorage.getItem("theBiz") !== null) {
+        var retrievedBiz1 = JSON.parse(localStorage.getItem('theBiz'));
 
-var template1 = _.template(
-        "<li class = 'comp'>" + 
+        var template1 = _.template(
+            "<li class = 'comp'>" +
             "<div>" +
-                "<h3><%= name %></h3>" +
-                "<p>Tel: <%= tel %></p>" + 
-                "<p> Email: <%= email %></p>" +
-            "</div>" + 
-            "<aside>" + 
-                "<span class = 'show-detail'></span>" +
-            "</aside>" + 
+            "<h3><%= name.first %> <%= name.last %></h3>" +
+            "<p>Tel: <%= phone %></p>" +
+            "<p> Email: <%= email %></p>" +
+            "</div>" +
+            "<aside>" +
+            "<span class = 'show-detail'></span>" +
+            "</aside>" +
             "</li>" +
             "</script>"
-);
+        );
 
-var memberItems = "";
+        var memberItems = "";
 
-for (var i = 0; i < retrievedBiz1.members.length; i++) {
-    memberItems += template1(retrievedBiz1.members[i]);
-}
+        for (var i = 0; i < retrievedBiz1.members.length; i++) {
+            memberItems += template1(retrievedBiz1.members[i]);
+        };
+    }
 
 
 
-$('#busMembersList').html(memberItems);
+    $('#busMembersList').html(memberItems);
 
 });
