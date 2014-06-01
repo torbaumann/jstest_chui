@@ -8,6 +8,17 @@
 
 
 // ///////////////////////////////
+// NEW Client BUTTON
+// ///////////////////////////////
+$(function () {
+    // Attach event to 'goToNewClientButton' button:
+    $("#goToNewClientButton").on("singletap", function () {
+        $.UIGoToArticle("#newClientArticle");
+    });
+})
+
+
+// ///////////////////////////////
 // NEW BUSINESS BUTTON
 // ///////////////////////////////
 $(function () {
@@ -63,6 +74,9 @@ $(function () {
         $.UIGoToArticle("#newEnquiry");
     });
 })
+
+
+
 
 
 
@@ -182,7 +196,7 @@ var memberData = "";
 // business constructor
 // ///////////////////////////////
 function NewBusiness() {
-    
+
     newBiz.name = document.getElementById("biz_name_field").value;
     newBiz.phone = document.getElementById("biz_phone_field").value;
     newBiz.email = document.getElementById("biz_email_field").value;
@@ -241,13 +255,13 @@ function NewMember() {
 
 
 function makeNewMember() {
-memberData = $('#newMemberForm').formParams();
-    
-  theBiz.members.push(memberData);
+    memberData = $('#newMemberForm').formParams();
+
+    theBiz.members.push(memberData);
 
     //call update storage function
     // updateStorage();
-    
+
 }
 
 
@@ -399,30 +413,30 @@ function newContact() {
 // ///////////////
 
 $(document).ready(function () {
-var retrievedBiz1 = JSON.parse(localStorage.getItem('newBiz'));
+    var retrievedBiz1 = JSON.parse(localStorage.getItem('newBiz'));
 
-var template1 = _.template(
-        "<li class = 'comp'>" + 
-            "<div>" +
-                "<h3><%= name %></h3>" +
-                "<p>Tel: <%= tel %></p>" + 
-                "<p> Email: <%= email %></p>" +
-            "</div>" + 
-            "<aside>" + 
-                "<span class = 'show-detail'></span>" +
-            "</aside>" + 
-            "</li>" +
-            "</script>"
-);
+    var template1 = _.template(
+        "<li class = 'comp'>" +
+        "<div>" +
+        "<h3><%= name %></h3>" +
+        "<p>Tel: <%= tel %></p>" +
+        "<p> Email: <%= email %></p>" +
+        "</div>" +
+        "<aside>" +
+        "<span class = 'show-detail'></span>" +
+        "</aside>" +
+        "</li>" +
+        "</script>"
+    );
 
-var memberItems = "";
+    var memberItems = "";
 
-for (var i = 0; i < retrievedBiz1.members.length; i++) {
-    memberItems += template1(retrievedBiz1.members[i]);
-}
+    for (var i = 0; i < retrievedBiz1.members.length; i++) {
+        memberItems += template1(retrievedBiz1.members[i]);
+    }
 
 
 
-$('#busMembersList').html(memberItems);
+    $('#busMembersList').html(memberItems);
 
 });

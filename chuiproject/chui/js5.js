@@ -8,8 +8,13 @@
 
 
 // ///////////////////////////////
-// NEW BUSINESS BUTTON
+// BUTTONS
 // ///////////////////////////////
+
+
+// =======================
+// NEW BUSINESS BUTTON
+// =======================
 $(function () {
     // Attach event to 'goToNewBusinessButton' button:
     $("#goToNewBusinessButton").on("singletap", function () {
@@ -17,9 +22,10 @@ $(function () {
     });
 })
 
-// ///////////////////////////////
+
+// =======================
 // SAVE BUSINESS BUTTON
-// ///////////////////////////////
+// =======================
 $(function () {
     // Attach event to 'saveNewBusinessButton' button:
     $("#saveNewBusinessButton").on("singletap", function () {
@@ -28,10 +34,9 @@ $(function () {
 })
 
 
-// ///////////////////////////////
+// =======================
 // DELETE BUSINESS BUTTON
-// ///////////////////////////////
-
+// =======================
 function deleteBusiness() {
 
     //test if the myPerson object exists in local Storage
@@ -43,9 +48,10 @@ function deleteBusiness() {
 
 }
 
-// ///////////////////////////////
+
+// =======================
 // NEW MEMBER BUTTON
-// ///////////////////////////////
+// =======================
 $(function () {
     // Attach event to 'goToNewMemberButton' button:
     $("#goToNewMemberButton").on("singletap", function () {
@@ -54,9 +60,9 @@ $(function () {
 })
 
 
-// ///////////////////////////////
+// =======================
 // SAVE NEW MEMBER BUTTON
-// ///////////////////////////////
+// =======================
 $(function () {
     // Attach event to 'goToNewMemberButton' button:
     $("#saveMemberButton").on("singletap", function () {
@@ -66,16 +72,38 @@ $(function () {
 })
 
 
-// ///////////////////////////////
-// NEW ENQUIRY BUTTON
-// ///////////////////////////////
+// ==================
+// NEW PROJECT BUTTON
+// ==================
 $(function () {
-    // Attach event to 'goToEnquiryButton' button:
-    $("#goToEnquiryButton").on("singletap", function () {
-        $.UIGoToArticle("#newEnquiry");
+    // Attach event to 'goToNewProjectButton' button:
+    $("#goToNewProjectButton").on("singletap", function () {
+        $.UIGoToArticle("#newProjectArticle");
     });
 })
 
+
+// ==================
+// NEW Client BUTTON
+// ==================
+$(function () {
+    // Attach event to 'goToNewClientButton' button:
+    $("#goToNewClientButton").on("singletap", function () {
+        $.UIGoToArticle("#newClientArticle");
+    });
+})
+
+
+// =======================
+// SAVE NEW CLIENT BUTTON
+// =======================
+$(function () {
+    // Attach event to 'goToNewMemberButton' button:
+    $("#saveClientButton").on("singletap", function () {
+        location.reload();
+        $.UIGoToArticle("#clients");
+    });
+})
 
 
 // ///////////////////////////////
@@ -106,7 +134,7 @@ window.onload = function () {
 
         // assign html output to div
         document.getElementById("businessOutputDiv").innerHTML = busOutput;
-        
+
         theBiz = retrievedBiz
 
     }
@@ -131,7 +159,7 @@ function createGuid() {
 
 
 // ///////////////////////////////
-//SAVE TO LOCALSTORAGE
+// SAVE TO LOCALSTORAGE
 // ///////////////////////////////
 function updateStorage() {
     localStorage.setItem('theBiz', JSON.stringify(theBiz));
@@ -181,17 +209,9 @@ var contactOutput = "";
 var memberData = {};
 var pname = "";
 var ptype = "";
-var cfname = "";
-var clname = "";
-var cphone = "";
-var cemail = "";
-var cstreet = "";
-var csuburb = "";
-var ccity = "";
-var cstate = "";
-var ccountry = "";
-var cgender = "";
+
 var memberData = "";
+var clientData = "";
 // var retrievedBiz = "";
 // var theBiz = retrievedBiz;
 
@@ -200,7 +220,7 @@ var memberData = "";
 
 // ///////////////////////////////
 // jquery
-// make new business from form data
+// make NEW BUSINESS from form data
 // ///////////////////////////////
 function makeNewBusiness() {
 
@@ -224,14 +244,16 @@ function makeNewBusiness() {
 }
 
 
-
+// ///////////////////////////////
 // jquery
-// get member data from form
+// get MEMBER data from form
 // ///////////////////////////////
 
 
 function makeNewMember() {
     memberData = $('#newMemberForm').formParams();
+    
+    memberData.name.full = memberData.name.first + " " + memberData.name.last;
 
     // push to our theBiz object members array
     theBiz.members.push(memberData);
@@ -243,6 +265,45 @@ function makeNewMember() {
 
 
 }
+
+
+// ///////////////////////////////
+// jquery
+// get CLIENT data from form
+// ///////////////////////////////
+
+
+function makeNewClient() {
+    clientData = $('#newClientForm').formParams();
+
+    clientData.name.full = clientData.name.first + " " + clientData.name.last;
+    
+    // push to our theBiz object members array
+    theBiz.contacts.push(clientData);
+    
+    // TODO sort the contacts array before punching
+    // to localstorage
+   //  _.sortBy(data, function(o) {return o.name.last; })
+
+    //call update storage function
+    updateStorage();
+
+    // build our html output
+
+
+}
+
+
+// ////////////////////////////////////////////
+//%PROJECT - Populate PROJECT form contact select data
+// ////////////////////////////////////////////
+
+// get the data into an array
+// var selectListArray = _.map(retrievedBiz.contacts, function(currentObject) { return _.pick(currentObject, 'name')})
+
+
+
+
 
 
 
@@ -340,66 +401,25 @@ function newEvent() {
 }
 
 
-// ///////////////////////////////
-//%CONTACT CONSTRUCTOR
-// ///////////////////////////////
-function Contact(firstName, lastName, phoneNumber, email, street, suburb, city, state, country, gender) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.fullName = this.firstName + " " + this.lastName;
-    this.phoneNumber = phoneNumber;
-    this.email = email;
-    this.address.street = street;
-    this.address.suburb = suburb;
-    this.address.city = city;
-    this.address.state = state;
-    this.address.country = country;
-    this.gender = gender;
-    this.notes = [];
-    this.id = createGuid();
-}
-
-// %build contact object from form data
-function newContact() {
-    cfname = document.getElementById("contact_first_name_field").value;
-    clname = document.getElementById("contact_last_name_field").value;
-    cphone = document.getElementById("contact_phone_field").value;
-    cemail = document.getElementById("contact_email_field").value;
-    cstreet = document.getElementById("contact_street_field").value;
-    csuburb = document.getElementById("contact_suburb_field").value;
-    ccity = document.getElementById("contact_city_field").value;
-    cstate = document.getElementById("contact_state_field").value;
-    ccountry = document.getElementById("contact_country_field").value;
-    cgender = document.getElementById("contact_gender_field").value;
-
-
-    //call our Contact constructor
-    var cont1 = new Contact(cfname, clname, cphone, cemail, cstreet, csuburb, ccity, cstate, ccountry, cgender);
-
-    // add it to the newBiz.contacts array
-    // contacts belong to the business object, not the project
-    // even though we will call them from the project
-    newBiz.contacts.push(cont1);
-
-    //call update storage function
-    updateStorage();
-
-}
-
 
 
 // ///////////////
 // %Templating
 // ///////////////
 
+
+
 $(document).ready(function () {
     if (localStorage.getItem("theBiz") !== null) {
         var retrievedBiz1 = JSON.parse(localStorage.getItem('theBiz'));
 
-        var template1 = _.template(
+        
+        // ========================
+        // TEMPL - Members Template
+        var memberTemplate = _.template(
             "<li class = 'comp'>" +
             "<div>" +
-            "<h3><%= name.first %> <%= name.last %></h3>" +
+            "<h3><%= name.full %></h3>" +
             "<p>Tel: <%= phone %></p>" +
             "<p> Email: <%= email %></p>" +
             "</div>" +
@@ -413,12 +433,50 @@ $(document).ready(function () {
         var memberItems = "";
 
         for (var i = 0; i < retrievedBiz1.members.length; i++) {
-            memberItems += template1(retrievedBiz1.members[i]);
+            memberItems += memberTemplate(retrievedBiz1.members[i]);
         };
+
+        // output to html
+        $('#busMembersList').html(memberItems);
+
+        // END TEMPL - Members Template
+        // ============================
+        
+        
+        // ==========================
+        // TEMPL - Contacts Template       
+        //test if contacts object exists
+        if (retrievedBiz1.contacts.length > 0) {
+            // TEMPL - Contact Template
+            var contactTemplate = _.template(
+                "<li class = 'comp'>" +
+                "<div>" +
+                "<h3><%= name.first %> <%= name.last %></h3>" +
+                "<p>Tel: <%= phone.mobile %></p>" +
+                "<p> Email: <%= email %></p>" +
+                "</div>" +
+                "<aside>" +
+                "<span class = 'show-detail'></span>" +
+                "</aside>" +
+                "</li>" +
+                "</script>"
+            );
+
+            var contactItems = "";
+
+            for (var i = 0; i < retrievedBiz1.contacts.length; i++) {
+                contactItems += contactTemplate(retrievedBiz1.contacts[i]);
+            };
+
+            // output to html    
+            $('#clientsList').html(contactItems);
+
+        }
+        
+        // END TEMPL - Contacts Template
+        // ==============================
+
     }
 
-
-
-    $('#busMembersList').html(memberItems);
-
 });
+

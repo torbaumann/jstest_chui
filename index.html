@@ -44,16 +44,17 @@
         <section>
 
             <div>
-                <a class='button' id='goToEnquiryButton'>New Enquiry</a>
+                <!-- New enquiry button -->
+                <a class='button' id='goToNewProjectButton'>New Project</a>
             </div>
 
             <!-- Main page NAV list -->
             <ul class='list' role='list'>
 
-                <!-- Goes to newEnquiry Article -->
-                <li class='comp' data-goto="newEnquiry">
+                <!-- Goes to newProject Article -->
+                <li class='comp' data-goto="newProjectArticle">
                     <div>
-                        <h3>New Enquiry</h3>
+                        <h3>New Project</h3>
                     </div>
                     <aside>
                         <span class='nav'></span>
@@ -143,17 +144,17 @@
 
 
     <!-- ====================  -->
-    <!-- ENQUIRY PAGE ARTICLE  -->
+    <!-- NEW PROJECT PAGE ARTICLE  -->
     <!-- ====================  -->
     <nav class='next'>
         <a href='#' class='button back'>Home</a>
         <h1>Enquiry</h1>
     </nav>
 
-    <article id='newEnquiry' class='next'>
+    <article id='newProjectArticle' class='next'>
         <section>
             <form>
-                <ul class='list' id='newEnquiryForm'>
+                <ul class='list' id='newProjectForm'>
                     <li>
                         <div>Job Name
                             <input type="text" size="30" placeholder="Name" name="jobName" id="job_name_field">
@@ -173,28 +174,13 @@
                         </div>
                     </li>
                     <li>
-                        <div>First Name
+                        <div>Client
                             <input type="text" size="30" placeholder="First Name" name="client_first_name" id="client_first_name_field">
-                        </div>
-                    </li>
-                    <li>
-                        <div>Last Name
-                            <input type="text" size="30" placeholder="Last Name" name="client_last_name" id="client_last_name_field">
-                        </div>
-                    </li>
-                    <li>
-                        <div>Email
-                            <input type="text" size="30" placeholder="Email" name="client_email" id="client_email_field">
-                        </div>
-                    </li>
-                    <li>
-                        <div>Phone
-                            <input type="text" size="30" placeholder="Tel" name="client_phone" id="client_phone_field">
                         </div>
                     </li>
                 </ul>
                 <!-- Save Enquiry Button -->
-                <a class='button' id='saveNewBusinessButton' onclick="">Save</a>
+                <a class='button' id='saveNewProjectButton' onclick="">Save</a>
             </form>
         </section>
     </article>
@@ -497,7 +483,6 @@
             </div>
             <ul class='list' id='busMembersList'>
             </ul>
-
         </section>
     </article>
 
@@ -544,27 +529,27 @@
                     </li>
                     <li>
                         <div>Street
-                            <input type="text" size="30" name="address[street]" id="member_phone_field">
+                            <input type="text" size="30" name="address[street]" id="member_street_field">
                         </div>
                     </li>
                     <li>
                         <div>Suburb
-                            <input type="text" size="30" name="address[suburb]" id="member_phone_field">
+                            <input type="text" size="30" name="address[suburb]" id="member_suburb_field">
                         </div>
                     </li>
                     <li>
                         <div>City
-                            <input type="text" size="30" name="address[city]" id="member_phone_field">
+                            <input type="text" size="30" name="address[city]" id="member_city_field">
                         </div>
                     </li>
                     <li>
                         <div>Country
-                            <input type="text" size="30" name="address[country]" id="member_phone_field">
+                            <input type="text" size="30" name="address[country]" id="member_country_field">
                         </div>
                     </li>
                     <li>
                         <div>Postcode
-                            <input type="text" size="30" name="address[postcode]" id="member_phone_field">
+                            <input type="text" size="30" name="address[postcode]" id="member_postcode_field">
                         </div>
                     </li>
                 </ul>
@@ -597,13 +582,107 @@
 
     <article id="clients" class='next'>
         <section>
+            <div>
+                <!-- New Client button -->
+                <a class='button' id='goToNewClientButton'>New Client</a>
+            </div>
+            <div>
+                <ul class='list' id='clientsList'>
+                </ul>
+            </div>
         </section>
-
     </article>
 
     <!-- =========== -->
     <!-- END CLIENTS -->
     <!-- =========== -->
+
+
+    <!-- ----------------------------- -->
+    <!--  CLIENTS > NEW CLIENT SETUP   -->
+    <!-- ----------------------------- -->
+
+
+    <nav class='next'>
+        <a href='#' class='button back'>Settings</a>
+        <h1>New Client</h1>
+    </nav>
+
+    <article id='newClientArticle' class='next'>
+        <section>
+            <form id='newClientForm'>
+                <div>
+
+                </div>
+                <ul class='list'>
+                    <li>
+                        <div>First Name
+                            <input type="text" size="30" name="name[first]" id="client_first_name_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            Last Name
+                            <input type="text" size="30" name="name[last]" id="client_last_name_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>Gender
+                            <input type="text" size="30" name=“gender” id="client_gender_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>Email
+                            <input type="text" size="30" name="email" id="client_email_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>Phone (Mobile)
+                            <input type="text" size="30" name="phone[mobile]" id="client_phone_mobile_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>Phone (Other)
+                            <input type="text" size="30" name="phone[other]" id="client_phone_other_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>Street
+                            <input type="text" size="30" name="address[street]" id="client_street_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>Suburb
+                            <input type="text" size="30" name="address[suburb]" id="client_suburb_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>City
+                            <input type="text" size="30" name="address[city]" id="client_city_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>Country
+                            <input type="text" size="30" name="address[country]" id="client_country_field">
+                        </div>
+                    </li>
+                    <li>
+                        <div>Postcode
+                            <input type="text" size="30" name="address[postcode]" id="client_postcode_field">
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Save Business Button   -->
+                <a class='button' id='saveMemberButton' onclick="window.makeNewClient();document.getElementById('newClientForm').reset()">Save</a>
+
+            </form>
+        </section>
+    </article>
+
+    <!-- ------------------------------------>
+    <!--  END CLIENTS > NEW CLIENT SETUP   -->
+    <!-- --------------------------------- -->
 
 
 </body>
