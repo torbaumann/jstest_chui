@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>dummy
 <html lang="en">
 
 <head>
@@ -17,7 +17,9 @@
     <script src="./chuiproject/chui/underscore-min.js" type="text/javascript"></script>
     <script src="./chuiproject/chui/jquery.formparams.js" type="text/javascript"></script>
     <script src="./chuiproject/chui/js5.js" type="text/javascript"></script>
+    <script src="./chuiproject/chui/templates.js" type="text/javascript"></script>
     <script src="./chuiproject/chui/chui-3.5.2.js" type="text/javascript"></script>
+
 
     <link rel="stylesheet" href="./chuiproject/chui/fontello.css">
 
@@ -62,9 +64,9 @@
                 </li>
 
                 <!-- Goes to bookings Article -->
-                <li class='comp' data-goto="bookings">
+                <li class='comp' data-goto="projectsArticle">
                     <div>
-                        <h3>Bookings</h3>
+                        <h3>Projects</h3>
                     </div>
                     <aside>
                         <span class='nav'></span>
@@ -123,19 +125,23 @@
 
 
     <!-- ======== -->
-    <!-- BOOKINGS -->
+    <!-- PROJECTS -->
     <!-- ======== -->
     <nav class='next'>
         <a href='#' class='button back'>Home</a>
-        <h1>Bookings</h1>
+        <h1>Projects</h1>
     </nav>
 
 
-    <article id="bookings" class='next'>
+    <article id="projectsArticle" class='next'>
         <section>
-            <h2>Current Bookings</h2>
             <div>
-                <p>Placeholder</p>
+                <!-- New Project button -->
+                <a class='button' id='goToNewProjectButton'>New Project</a>
+            </div>
+            <div>
+                <ul class='list' id='projectsList'>
+                </ul>
             </div>
         </section>
     </article>
@@ -178,9 +184,22 @@
                             <input type="text" size="30" placeholder="First Name" name="client_first_name" id="client_first_name_field">
                         </div>
                     </li>
+                    <li>
+                        <div>
+                            Discovery
+                            <select name="discovery" id="job_discovery_field">
+                                <option value="Organic">Organic</option>
+                                <option value="Google">Google</option>
+                                <option value="Client Referal">Client Referal</option>
+                                <option value="Industry Referal">Industry Referal</option>
+                                <option value="Existing Client">Existing Client</option>
+                                <option value="Social">Social</option>
+                            </select>
+                        </div>
+                    </li>
                 </ul>
                 <!-- Save Enquiry Button -->
-                <a class='button' id='saveNewProjectButton' onclick="">Save</a>
+                <a class='button' id='saveProjectButton' onclick="window.makeNewProject();document.getElementById('newProjectForm').reset()">Save</a>
             </form>
         </section>
     </article>

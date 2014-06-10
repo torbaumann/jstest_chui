@@ -106,6 +106,18 @@ $(function () {
 })
 
 
+// =======================
+// SAVE NEW PROJECT BUTTON
+// =======================
+$(function () {
+    // Attach event to 'goToNewProjectButton' button:
+    $("#saveProjectButton").on("singletap", function () {
+        location.reload();
+        $.UIGoToArticle("#projectsArticle");
+    });
+})
+
+
 // ///////////////////////////////
 // PAGELOAD CHECK
 // check if a person already exists
@@ -212,6 +224,7 @@ var ptype = "";
 
 var memberData = "";
 var clientData = "";
+var projectData = "";
 // var retrievedBiz = "";
 // var theBiz = retrievedBiz;
 
@@ -230,6 +243,9 @@ function makeNewBusiness() {
     theBiz.members = [];
     theBiz.projects = [];
     theBiz.contacts = [];
+    theBiz.projectTypes = ["Wedding", "Engagement", "Portrait", "Commercial"];
+    theBiz.pipeline = ["Enquiry", "Booking", "Planing", "Production", "Delivery"];
+    theBiz.status = ["ToDo", "Awaiting client", "Follow Up", "Awaiting Date"];
 
     // call update storage function
     updateStorage();
@@ -292,6 +308,40 @@ function makeNewClient() {
 
 
 }
+
+
+// ///////////////////////////////
+// jquery
+// get PROJECT data from form
+// ///////////////////////////////
+
+
+function makeNewProject() {
+    projectData = $('#newProjectForm').formParams();
+
+    projectData.status = "Opened";
+    projectData.pipelineStage = "Enquiry";
+    projectData.events = [];
+    projectData.toDos = [];
+    projectData.notes = [];
+    
+    
+    // push to our theBiz object projects array
+    theBiz.projects.push(projectData);
+    
+    // TODO sort the contacts array before punching
+    // to localstorage
+   //  _.sortBy(data, function(o) {return o.name.last; })
+
+    //call update storage function
+    updateStorage();
+
+    // build our html output
+
+
+}
+
+
 
 
 // ////////////////////////////////////////////
@@ -402,81 +452,4 @@ function newEvent() {
 
 
 
-
-// ///////////////
-// %Templating
-// ///////////////
-
-
-
-$(document).ready(function () {
-    if (localStorage.getItem("theBiz") !== null) {
-        var retrievedBiz1 = JSON.parse(localStorage.getItem('theBiz'));
-
-        
-        // ========================
-        // TEMPL - Members Template
-        var memberTemplate = _.template(
-            "<li class = 'comp'>" +
-            "<div>" +
-            "<h3><%= name.full %></h3>" +
-            "<p>Tel: <%= phone %></p>" +
-            "<p> Email: <%= email %></p>" +
-            "</div>" +
-            "<aside>" +
-            "<span class = 'show-detail'></span>" +
-            "</aside>" +
-            "</li>" +
-            "</script>"
-        );
-
-        var memberItems = "";
-
-        for (var i = 0; i < retrievedBiz1.members.length; i++) {
-            memberItems += memberTemplate(retrievedBiz1.members[i]);
-        };
-
-        // output to html
-        $('#busMembersList').html(memberItems);
-
-        // END TEMPL - Members Template
-        // ============================
-        
-        
-        // ==========================
-        // TEMPL - Contacts Template       
-        //test if contacts object exists
-        if (retrievedBiz1.contacts.length > 0) {
-            // TEMPL - Contact Template
-            var contactTemplate = _.template(
-                "<li class = 'comp'>" +
-                "<div>" +
-                "<h3><%= name.first %> <%= name.last %></h3>" +
-                "<p>Tel: <%= phone.mobile %></p>" +
-                "<p> Email: <%= email %></p>" +
-                "</div>" +
-                "<aside>" +
-                "<span class = 'show-detail'></span>" +
-                "</aside>" +
-                "</li>" +
-                "</script>"
-            );
-
-            var contactItems = "";
-
-            for (var i = 0; i < retrievedBiz1.contacts.length; i++) {
-                contactItems += contactTemplate(retrievedBiz1.contacts[i]);
-            };
-
-            // output to html    
-            $('#clientsList').html(contactItems);
-
-        }
-        
-        // END TEMPL - Contacts Template
-        // ==============================
-
-    }
-
-});
 
