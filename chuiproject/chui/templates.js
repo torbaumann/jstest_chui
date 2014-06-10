@@ -81,9 +81,11 @@ $(document).ready(function () {
             // TEMPL - Project Template
             var projectTemplate = _.template(
                 "<li class = 'comp'>" +
+                "<aside><div title='Code: 0xe812' class='the-icons span3'><i class='icon-bookmark-empty'></i><span class='i-name'></span><span class='i-code'></span></div></aside>" +
                 "<div>" +
                 "<h3><%= jobName %></h3>" +
                 "<p>Job Type: <%= jobType %></p>" +
+                "<p> Date: <%= jobDate %></p>" +
                 "<p> Status: <%= status %></p>" +
                 "</div>" +
                 "<aside>" +

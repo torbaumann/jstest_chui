@@ -153,7 +153,12 @@ window.onload = function () {
 }
 
 
+// ///////////////////////////////
+// Date Picker
 
+// $(function() {
+//     $( "#job_date_field" ).datepicker();
+//  })
 
 
 
